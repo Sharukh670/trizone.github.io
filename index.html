@@ -26,13 +26,17 @@
     }
 
     .broken-img {
-      background-color: #ddd;
+      width: 80px;
+      height: 80px;
+      background-color: #f9f9f9;
       border: 2px dashed #007bff;
       position: relative;
+      box-sizing: border-box;
     }
 
-    /* Top Left, Top Right, Top Center decorative corners */
-    .broken-img::before, .broken-img::after, .broken-img::marker {
+    /* Top corners */
+    .broken-img::before,
+    .broken-img::after {
       content: "";
       position: absolute;
       width: 0;
@@ -40,27 +44,40 @@
       border-style: solid;
     }
 
-    /* Top left corner */
     .broken-img::before {
-      top: 0;
-      left: 0;
-      border-width: 0 15px 15px 0;
+      top: -2px;
+      left: -2px;
+      border-width: 0 20px 20px 0;
       border-color: transparent #007bff transparent transparent;
     }
 
-    /* Top right corner */
     .broken-img::after {
-      top: 0;
-      right: 0;
-      border-width: 0 0 15px 15px;
+      top: -2px;
+      right: -2px;
+      border-width: 0 0 20px 20px;
       border-color: transparent transparent #007bff transparent;
     }
 
-    /* Bottom left corner */
-    .broken-img::marker {
-      bottom: 0;
-      left: 0;
-      border-width: 15px 15px 0 0;
+    .broken-img .bottom-left,
+    .broken-img .bottom-right {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    .broken-img .bottom-left {
+      bottom: -2px;
+      left: -2px;
+      border-width: 20px 20px 0 0;
+      border-color: #007bff transparent transparent transparent;
+    }
+
+    .broken-img .bottom-right {
+      bottom: -2px;
+      right: -2px;
+      border-width: 20px 0 0 20px;
       border-color: #007bff transparent transparent transparent;
     }
 
@@ -90,7 +107,7 @@
 
   <div class="right-panel">
 
-    <!-- Dynamic Sections (Example: Ceiling) -->
+    <!-- Example Section -->
     <div class="section" id="ceiling-section">
       <h4>Ceiling:</h4>
       <div class="grid">
@@ -101,8 +118,8 @@
       </div>
     </div>
 
-    <!-- You can repeat this pattern for Body, Cop, Handle, Floor sections -->
-    
+    <!-- Repeat same structure for Body, COP, Handle, Floor sections if needed -->
+
   </div>
 </div>
 
@@ -129,14 +146,25 @@
 
   function handleError(img) {
     img.onerror = null;
-    img.src = ""; // Clear broken image
-    img.classList.add("broken-img");
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'broken-img';
+
+    const bottomLeft = document.createElement('div');
+    bottomLeft.className = 'bottom-left';
+
+    const bottomRight = document.createElement('div');
+    bottomRight.className = 'bottom-right';
+
+    wrapper.appendChild(bottomLeft);
+    wrapper.appendChild(bottomRight);
+
+    img.replaceWith(wrapper);
   }
 </script>
 
 </body>
 </html>
-
 
 
 
