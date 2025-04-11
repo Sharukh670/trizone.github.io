@@ -10,7 +10,12 @@
     nav { background: #f4f4f4; padding: 10px 20px; text-align: center; }
     .container { display: flex; padding: 20px; }
     .left-panel { flex: 1; display: flex; justify-content: center; align-items: center; border-right: 1px solid #ccc; }
-    .left-panel img { max-width: 90%; max-height: 350px; border: 2px solid #ccc; border-radius: 5px; }
+    .left-panel img, .left-panel .broken-img-box {
+      max-width: 90%;
+      max-height: 350px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
     .right-panel { flex: 2; padding: 0 20px; }
     .section { margin-bottom: 20px; }
     .section h4 { margin-bottom: 10px; }
@@ -26,17 +31,23 @@
     }
 
     .broken-img {
-      width: 80px;
-      height: 80px;
-      background-color: #f9f9f9;
-      border: 2px dashed #007bff;
-      position: relative;
-      box-sizing: border-box;
+      display: none; /* Hide broken image */
     }
 
-    /* Top corners */
-    .broken-img::before,
-    .broken-img::after {
+    .broken-img-box {
+      width: 150px;
+      height: 200px;
+      position: relative;
+      background-color: #f0f8ff;
+      border: 3px dashed #007bff;
+      box-sizing: border-box;
+      margin: auto;
+    }
+
+    /* Top triangles */
+    .broken-img-box::before,
+    .broken-img-box::after,
+    .broken-img-box .top-center {
       content: "";
       position: absolute;
       width: 0;
@@ -44,22 +55,32 @@
       border-style: solid;
     }
 
-    .broken-img::before {
-      top: -2px;
-      left: -2px;
+    .broken-img-box::before {
+      top: -10px;
+      left: -10px;
       border-width: 0 20px 20px 0;
       border-color: transparent #007bff transparent transparent;
     }
 
-    .broken-img::after {
-      top: -2px;
-      right: -2px;
+    .broken-img-box::after {
+      top: -10px;
+      right: -10px;
       border-width: 0 0 20px 20px;
       border-color: transparent transparent #007bff transparent;
     }
 
-    .broken-img .bottom-left,
-    .broken-img .bottom-right {
+    .broken-img-box .top-center {
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 0 15px 15px 15px;
+      border-color: transparent transparent #007bff transparent;
+    }
+
+    /* Bottom triangles */
+    .broken-img-box .bottom-left,
+    .broken-img-box .bottom-right,
+    .broken-img-box .bottom-center {
       content: "";
       position: absolute;
       width: 0;
@@ -67,17 +88,25 @@
       border-style: solid;
     }
 
-    .broken-img .bottom-left {
-      bottom: -2px;
-      left: -2px;
+    .broken-img-box .bottom-left {
+      bottom: -10px;
+      left: -10px;
       border-width: 20px 20px 0 0;
       border-color: #007bff transparent transparent transparent;
     }
 
-    .broken-img .bottom-right {
-      bottom: -2px;
-      right: -2px;
+    .broken-img-box .bottom-right {
+      bottom: -10px;
+      right: -10px;
       border-width: 20px 0 0 20px;
+      border-color: #007bff transparent transparent transparent;
+    }
+
+    .broken-img-box .bottom-center {
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 15px 15px 0 15px;
       border-color: #007bff transparent transparent transparent;
     }
 
@@ -101,8 +130,8 @@
 <nav>Products | About Us | Contact</nav>
 
 <div class="container">
-  <div class="left-panel">
-    <img id="previewImage" src="images/bd-1-i.jpg" alt="Preview Image" />
+  <div class="left-panel" id="image-container">
+    <img id="previewImage" src="images/missing-image.jpg" alt="Preview Image" onerror="handleError(this)" />
   </div>
 
   <div class="right-panel">
@@ -118,8 +147,6 @@
       </div>
     </div>
 
-    <!-- Repeat same structure for Body, COP, Handle, Floor sections if needed -->
-
   </div>
 </div>
 
@@ -128,7 +155,6 @@
   <button onclick="changePreview('images/bd-2-i.jpg')">3D View Cabin Two</button>
   <button onclick="changePreview('images/bd-3-i.jpg')">3D View Cabin Three</button>
   <button onclick="changePreview('images/bd-4-i.jpg')">3D View Cabin Four</button>
-  <button onclick="changePreview('images/bd-1-i.jpg')">3D View Cabin Five</button>
 </div>
 
 <div class="footer">
@@ -137,34 +163,48 @@
 
 <script>
   function showPreview(src) {
-    document.getElementById("previewImage").src = src;
+    const img = document.getElementById("previewImage");
+    img.src = src;
+    img.style.display = "block";
+    
+    const brokenBox = document.querySelector(".broken-img-box");
+    if (brokenBox) {
+      brokenBox.remove();
+    }
   }
 
   function changePreview(src) {
-    document.getElementById("previewImage").src = src;
+    showPreview(src);
   }
 
   function handleError(img) {
-    img.onerror = null;
+    img.style.display = "none";
+    const container = document.getElementById("image-container");
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'broken-img';
+    const box = document.createElement("div");
+    box.className = "broken-img-box";
 
-    const bottomLeft = document.createElement('div');
-    bottomLeft.className = 'bottom-left';
+    const topCenter = document.createElement("div");
+    topCenter.className = "top-center";
 
-    const bottomRight = document.createElement('div');
-    bottomRight.className = 'bottom-right';
+    const bottomLeft = document.createElement("div");
+    bottomLeft.className = "bottom-left";
 
-    wrapper.appendChild(bottomLeft);
-    wrapper.appendChild(bottomRight);
+    const bottomRight = document.createElement("div");
+    bottomRight.className = "bottom-right";
 
-    img.replaceWith(wrapper);
+    const bottomCenter = document.createElement("div");
+    bottomCenter.className = "bottom-center";
+
+    box.appendChild(topCenter);
+    box.appendChild(bottomLeft);
+    box.appendChild(bottomRight);
+    box.appendChild(bottomCenter);
+
+    container.appendChild(box);
   }
 </script>
 
 </body>
 </html>
-
-
 
