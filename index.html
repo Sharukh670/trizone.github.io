@@ -3,208 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>City Lifts & Engineering</title>
+  <title>Preview Box</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; }
-    header { background: #003366; color: white; padding: 10px 20px; text-align: center; font-size: 24px; }
-    nav { background: #f4f4f4; padding: 10px 20px; text-align: center; }
-    .container { display: flex; padding: 20px; }
-    .left-panel { flex: 1; display: flex; justify-content: center; align-items: center; border-right: 1px solid #ccc; }
-    .left-panel img, .left-panel .broken-img-box {
-      max-width: 90%;
-      max-height: 350px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f4f4f4;
+      margin: 0;
+      font-family: Arial, sans-serif;
     }
-    .right-panel { flex: 2; padding: 0 20px; }
-    .section { margin-bottom: 20px; }
-    .section h4 { margin-bottom: 10px; }
-    .grid { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; }
 
-    .grid img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border: 2px solid transparent;
-      background-color: #eee;
+    .preview-box {
       position: relative;
-    }
-
-    .broken-img {
-      display: none; /* Hide broken image */
-    }
-
-    .broken-img-box {
-      width: 150px;
-      height: 200px;
-      position: relative;
+      width: 300px;
+      height: 400px;
       background-color: #f0f8ff;
       border: 3px dashed #007bff;
-      box-sizing: border-box;
-      margin: auto;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Top triangles */
-    .broken-img-box::before,
-    .broken-img-box::after,
-    .broken-img-box .top-center {
-      content: "";
+    .preview-box img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      z-index: 1;
+    }
+
+    .triangle {
       position: absolute;
       width: 0;
       height: 0;
-      border-style: solid;
-    }
-
-    .broken-img-box::before {
-      top: -10px;
-      left: -10px;
-      border-width: 0 20px 20px 0;
-      border-color: transparent #007bff transparent transparent;
-    }
-
-    .broken-img-box::after {
-      top: -10px;
-      right: -10px;
-      border-width: 0 0 20px 20px;
-      border-color: transparent transparent #007bff transparent;
-    }
-
-    .broken-img-box .top-center {
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 0 15px 15px 15px;
-      border-color: transparent transparent #007bff transparent;
-    }
-
-    /* Bottom triangles */
-    .broken-img-box .bottom-left,
-    .broken-img-box .bottom-right,
-    .broken-img-box .bottom-center {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-style: solid;
-    }
-
-    .broken-img-box .bottom-left {
-      bottom: -10px;
-      left: -10px;
-      border-width: 20px 20px 0 0;
-      border-color: #007bff transparent transparent transparent;
-    }
-
-    .broken-img-box .bottom-right {
-      bottom: -10px;
-      right: -10px;
-      border-width: 20px 0 0 20px;
-      border-color: #007bff transparent transparent transparent;
-    }
-
-    .broken-img-box .bottom-center {
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 15px 15px 0 15px;
-      border-color: #007bff transparent transparent transparent;
-    }
-
-    .buttons { text-align: center; margin-top: 30px; }
-    .buttons button {
-      margin: 5px;
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .footer { background: #f4f4f4; padding: 20px; text-align: center; margin-top: 40px; font-size: 14px; color: #555; }
-  </style>
-</head>
-<body>
-
-<header>City Lifts & Engineering</header>
-<nav>Products | About Us | Contact</nav>
-
-<div class="container">
-  <div class="left-panel" id="image-container">
-    <img id="previewImage" src="images/missing-image.jpg" alt="Preview Image" onerror="handleError(this)" />
-  </div>
-
-  <div class="right-panel">
-
-    <!-- Example Section -->
-    <div class="section" id="ceiling-section">
-      <h4>Ceiling:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
-        <img src="images/missing-image.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="buttons">
-  <button onclick="changePreview('images/bd-1-i.jpg')">3D View Cabin One</button>
-  <button onclick="changePreview('images/bd-2-i.jpg')">3D View Cabin Two</button>
-  <button onclick="changePreview('images/bd-3-i.jpg')">3D View Cabin Three</button>
-  <button onclick="changePreview('images/bd-4-i.jpg')">3D View Cabin Four</button>
-</div>
-
-<div class="footer">
-  © 2025 City Lifts & Engineering. All rights reserved.
-</div>
-
-<script>
-  function showPreview(src) {
-    const img = document.getElementById("previewImage");
-    img.src = src;
-    img.style.display = "block";
-    
-    const brokenBox = document.querySelector(".broken-img-box");
-    if (brokenBox) {
-      brokenBox.remove();
-    }
-  }
-
-  function changePreview(src) {
-    showPreview(src);
-  }
-
-  function handleError(img) {
-    img.style.display = "none";
-    const container = document.getElementById("image-container");
-
-    const box = document.createElement("div");
-    box.className = "broken-img-box";
-
-    const topCenter = document.createElement("div");
-    topCenter.className = "top-center";
-
-    const bottomLeft = document.createElement("div");
-    bottomLeft.className = "bottom-left";
-
-    const bottomRight = document.createElement("div");
-    bottomRight.className = "bottom-right";
-
-    const bottomCenter = document.createElement("div");
-    bottomCenter.className = "bottom-center";
-
-    box.appendChild(topCenter);
-    box.appendChild(bottomLeft);
-    box.appendChild(bottomRight);
-    box.appendChild(bottomCenter);
-
-    container.appendChild(box);
-  }
-</script>
-
-</body>
-</html>
-
+      border-style:
