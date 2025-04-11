@@ -1,103 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>City Lifts & Engineering - 3D Preview</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>City Lifts 3D Preview</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
       background: #fff;
     }
-
     header {
       background: #003366;
       color: white;
-      padding: 15px;
+      padding: 10px 20px;
       text-align: center;
       font-size: 24px;
     }
-
     nav {
       background: #f4f4f4;
-      padding: 10px;
+      padding: 10px 20px;
       text-align: center;
     }
-
     .container {
       display: flex;
-      padding: 30px;
-      gap: 30px;
-      justify-content: center;
+      padding: 20px;
     }
-
     .left-panel {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
+      border-right: 1px solid #ccc;
     }
-
-    .preview-box {
-      width: 400px;
-      height: 500px;
-      perspective: 1200px;
+    .preview-wrapper {
+      position: relative;
+      width: 300px;
+      height: 400px;
     }
-
-    .preview-inner {
-      width: 100%;
-      height: 100%;
-      transform: rotateX(10deg) rotateY(-10deg);
-      transition: transform 0.4s ease;
-    }
-
-    .preview-inner img {
+    .preview-wrapper img {
+      position: absolute;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
-
     .right-panel {
-      flex: 1;
+      flex: 2;
+      padding: 0 20px;
     }
-
     .section {
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
-
     .section h4 {
       margin-bottom: 10px;
     }
-
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 100px);
-      gap: 12px;
+      grid-template-columns: repeat(4, 80px);
+      gap: 10px;
     }
-
     .grid img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border: 2px solid #ccc;
-      border-radius: 6px;
+      width: 80px;
+      height: 80px;
       cursor: pointer;
+      border: 1px solid #ccc;
       transition: transform 0.2s;
     }
-
     .grid img:hover {
       transform: scale(1.1);
-      border-color: #007bff;
     }
-
     .footer {
       background: #f4f4f4;
       padding: 20px;
       text-align: center;
-      margin-top: 40px;
       font-size: 14px;
       color: #555;
     }
@@ -109,24 +84,21 @@
 <nav>Products | About Us | Contact</nav>
 
 <div class="container">
-  <!-- Preview Area -->
   <div class="left-panel">
-    <div class="preview-box">
-      <div class="preview-inner">
-        <img id="previewImage" src="images/bd-1-i.jpg" alt="3D Elevator View" />
-      </div>
+    <div class="preview-wrapper">
+      <img src="images/base-shell.png" alt="Elevator Base" id="baseImage">
+      <img src="images/bd-1-i.jpg" alt="Body" id="designImage">
     </div>
   </div>
 
-  <!-- Options Panel -->
   <div class="right-panel">
-    <div class="section" id="body-section">
-      <h4>Body Design:</h4>
+    <div class="section">
+      <h4>Select Design:</h4>
       <div class="grid">
-        <img src="images/bd-1-i.jpg" alt="Design 1" onclick="showPreview(this.src)">
-        <img src="images/bd-2-i.jpg" alt="Design 2" onclick="showPreview(this.src)">
-        <img src="images/bd-3-i.jpg" alt="Design 3" onclick="showPreview(this.src)">
-        <img src="images/bd-4-i.jpg" alt="Design 4" onclick="showPreview(this.src)">
+        <img src="images/bd-1-i.jpg" alt="Design 1" onclick="changeDesign(this.src)">
+        <img src="images/bd-2-i.jpg" alt="Design 2" onclick="changeDesign(this.src)">
+        <img src="images/bd-3-i.jpg" alt="Design 3" onclick="changeDesign(this.src)">
+        <img src="images/bd-4-i.jpg" alt="Design 4" onclick="changeDesign(this.src)">
       </div>
     </div>
   </div>
@@ -137,11 +109,11 @@
 </div>
 
 <script>
-  function showPreview(src) {
-    const previewImage = document.getElementById("previewImage");
-    previewImage.src = src;
+  function changeDesign(src) {
+    document.getElementById("designImage").src = src;
   }
 </script>
 
 </body>
 </html>
+
