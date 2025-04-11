@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +15,7 @@
         .section { margin-bottom: 20px; }
         .section h4 { margin-bottom: 10px; }
         .grid { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; }
-        .grid div { width: 80px; height: 80px; background: #ddd; border: 1px dashed #999; }
+        .grid div, .grid img { width: 80px; height: 80px; background: #ddd; border: 1px dashed #999; object-fit: cover; }
         .buttons { text-align: center; margin-top: 30px; }
         .buttons button { margin: 5px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
         .footer { background: #f4f4f4; padding: 20px; text-align: center; margin-top: 40px; font-size: 14px; color: #555; }
@@ -41,7 +40,10 @@
         <div class="section">
             <h4>Body:</h4>
             <div class="grid">
-                <div></div><div></div><div></div><div></div>
+                <img src="images/bd-1-i.jpg" alt="Body 1">
+                <img src="images/bd-2-i.jpg" alt="Body 2">
+                <img src="images/bd-3-i.jpg" alt="Body 3">
+                <img src="images/bd-4-i.jpg" alt="Body 4">
             </div>
         </div>
         <div class="section">
@@ -79,3 +81,4 @@
 
 </body>
 </html>
+
