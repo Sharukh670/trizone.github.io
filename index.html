@@ -49,7 +49,7 @@
       padding: 0 20px;
     }
     .section {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
     .section h4 {
       margin-bottom: 10px;
@@ -86,19 +86,59 @@
 <div class="container">
   <div class="left-panel">
     <div class="preview-wrapper">
-      <img src="images/base-shell.png" alt="Elevator Base" id="baseImage">
-      <img src="images/bd-1-i.jpg" alt="Body" id="designImage">
+      <img src="images/base-shell.png" id="base" alt="Base">
+      <img src="images/bd-1.jpg" id="body" alt="Body">
+      <img src="images/ce-1.jpg" id="ceiling" alt="Ceiling">
+      <img src="images/hd-1.jpg" id="handle" alt="Handle">
+      <img src="images/fl-1.jpg" id="floor" alt="Floor">
+      <img src="images/cp-1.jpg" id="cop" alt="COP">
     </div>
   </div>
 
   <div class="right-panel">
-    <div class="section">
-      <h4>Select Design:</h4>
+    <div class="section" id="body-section">
+      <h4>Body:</h4>
       <div class="grid">
-        <img src="images/bd-1-i.jpg" alt="Design 1" onclick="changeDesign(this.src)">
-        <img src="images/bd-2-i.jpg" alt="Design 2" onclick="changeDesign(this.src)">
-        <img src="images/bd-3-i.jpg" alt="Design 3" onclick="changeDesign(this.src)">
-        <img src="images/bd-4-i.jpg" alt="Design 4" onclick="changeDesign(this.src)">
+        <img src="images/bd-1.jpg" onclick="changePart('body', this.src)">
+        <img src="images/bd-2.jpg" onclick="changePart('body', this.src)">
+        <img src="images/bd-3.jpg" onclick="changePart('body', this.src)">
+        <img src="images/bd-4.jpg" onclick="changePart('body', this.src)">
+      </div>
+    </div>
+    <div class="section" id="ceiling-section">
+      <h4>Ceiling:</h4>
+      <div class="grid">
+        <img src="images/ce-1.jpg" onclick="changePart('ceiling', this.src)">
+        <img src="images/ce-2.jpg" onclick="changePart('ceiling', this.src)">
+        <img src="images/ce-3.jpg" onclick="changePart('ceiling', this.src)">
+        <img src="images/ce-4.jpg" onclick="changePart('ceiling', this.src)">
+      </div>
+    </div>
+    <div class="section" id="handle-section">
+      <h4>Handle:</h4>
+      <div class="grid">
+        <img src="images/hd-1.jpg" onclick="changePart('handle', this.src)">
+        <img src="images/hd-2.jpg" onclick="changePart('handle', this.src)">
+        <img src="images/hd-3.jpg" onclick="changePart('handle', this.src)">
+        <img src="images/hd-4.jpg" onclick="changePart('handle', this.src)">
+      </div>
+    </div>
+    <div class="section" id="floor-section">
+      <h4>Floor:</h4>
+      <div class="grid">
+        <img src="images/fl-1.jpg" onclick="changePart('floor', this.src)">
+        <img src="images/fl-2.jpg" onclick="changePart('floor', this.src)">
+        <img src="images/fl-3.jpg" onclick="changePart('floor', this.src)">
+        <img src="images/fl-4.jpg" onclick="changePart('floor', this.src)">
+      </div>
+    </div>
+    <div class="section" id="cop-section">
+      <h4>COP:</h4>
+      <div class="grid">
+        <img src="images/cp-1.jpg" onclick="changePart('cop', this.src)">
+        <img src="images/cp-2.jpg" onclick="changePart('cop', this.src)">
+        <img src="images/cp-3.jpg" onclick="changePart('cop', this.src)">
+        <img src="images/cp-4.jpg" onclick="changePart('cop', this.src)">
       </div>
     </div>
   </div>
@@ -109,11 +149,12 @@
 </div>
 
 <script>
-  function changeDesign(src) {
-    document.getElementById("designImage").src = src;
+  function changePart(part, src) {
+    document.getElementById(part).src = src;
   }
 </script>
 
 </body>
 </html>
+
 
