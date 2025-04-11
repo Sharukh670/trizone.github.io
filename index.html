@@ -1,25 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>City Lifts & Engineering</title>
+  <meta charset="UTF-8">
+  <title>City Lifts & Engineering - 3D Preview</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; }
-    header { background: #003366; color: white; padding: 10px 20px; text-align: center; font-size: 24px; }
-    nav { background: #f4f4f4; padding: 10px 20px; text-align: center; }
-    .container { display: flex; padding: 20px; }
-    .left-panel { flex: 1; display: flex; justify-content: center; align-items: center; border-right: 1px solid #ccc; }
-    .left-panel img { max-width: 90%; max-height: 350px; border: 2px solid #ccc; border-radius: 5px; }
-    .right-panel { flex: 2; padding: 0 20px; }
-    .section { margin-bottom: 20px; }
-    .section h4 { margin-bottom: 10px; }
-    .grid { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; }
-    .grid img { width: 80px; height: 80px; cursor: pointer; transition: transform 0.2s; border: 2px solid transparent; }
-    .grid img:hover { transform: scale(1.1); border-color: #007bff; }
-    .buttons { text-align: center; margin-top: 30px; }
-    .buttons button { margin: 5px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    .footer { background: #f4f4f4; padding: 20px; text-align: center; margin-top: 40px; font-size: 14px; color: #555; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+
+    header {
+      background: #003366;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    nav {
+      background: #f4f4f4;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      padding: 30px;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .left-panel {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .preview-box {
+      width: 400px;
+      height: 500px;
+      perspective: 1200px;
+    }
+
+    .preview-inner {
+      width: 100%;
+      height: 100%;
+      transform: rotateX(10deg) rotateY(-10deg);
+      transition: transform 0.4s ease;
+    }
+
+    .preview-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .right-panel {
+      flex: 1;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section h4 {
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 100px);
+      gap: 12px;
+    }
+
+    .grid img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .grid img:hover {
+      transform: scale(1.1);
+      border-color: #007bff;
+    }
+
+    .footer {
+      background: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
@@ -28,74 +109,27 @@
 <nav>Products | About Us | Contact</nav>
 
 <div class="container">
+  <!-- Preview Area -->
   <div class="left-panel">
-    <img id="previewImage" src="images/bd-1-i.jpg" alt="Preview Image" />
+    <div class="preview-box">
+      <div class="preview-inner">
+        <img id="previewImage" src="images/bd-1-i.jpg" alt="3D Elevator View" />
+      </div>
+    </div>
   </div>
 
+  <!-- Options Panel -->
   <div class="right-panel">
-    <!-- Ceiling Section -->
-    <div class="section" id="ceiling-section">
-      <h4>Ceiling:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
-
-    <!-- Body Section -->
     <div class="section" id="body-section">
-      <h4>Body:</h4>
+      <h4>Body Design:</h4>
       <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
-
-    <!-- COP Section -->
-    <div class="section" id="cop-section">
-      <h4>Cop:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
-
-    <!-- Handle Section -->
-    <div class="section" id="handle-section">
-      <h4>Handle:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
-
-    <!-- Floor Section -->
-    <div class="section" id="floor-section">
-      <h4>Floor:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
+        <img src="images/bd-1-i.jpg" alt="Design 1" onclick="showPreview(this.src)">
+        <img src="images/bd-2-i.jpg" alt="Design 2" onclick="showPreview(this.src)">
+        <img src="images/bd-3-i.jpg" alt="Design 3" onclick="showPreview(this.src)">
+        <img src="images/bd-4-i.jpg" alt="Design 4" onclick="showPreview(this.src)">
       </div>
     </div>
   </div>
-</div>
-
-<div class="buttons">
-  <button onclick="changePreview('images/bd-1-i.jpg')">3D View Cabin One</button>
-  <button onclick="changePreview('images/bd-2-i.jpg')">3D View Cabin Two</button>
-  <button onclick="changePreview('images/bd-3-i.jpg')">3D View Cabin Three</button>
-  <button onclick="changePreview('images/bd-4-i.jpg')">3D View Cabin Four</button>
-  <button onclick="changePreview('images/bd-1-i.jpg')">3D View Cabin Five</button>
 </div>
 
 <div class="footer">
@@ -104,14 +138,10 @@
 
 <script>
   function showPreview(src) {
-    document.getElementById("previewImage").src = src;
-  }
-
-  function changePreview(src) {
-    document.getElementById("previewImage").src = src;
+    const previewImage = document.getElementById("previewImage");
+    previewImage.src = src;
   }
 </script>
 
 </body>
 </html>
-
