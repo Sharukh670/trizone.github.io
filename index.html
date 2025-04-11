@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Lifts & Engineering</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; }
-        header { background: #003366; color: white; padding: 10px 20px; text-align: center; font-size: 24px; }
-        nav { background: #f4f4f4; padding: 10px 20px; text-align: center; }
-        .container { display: flex; padding: 20px; }
-        .left-panel { flex: 1; display: flex; justify-content: center; align-items: center; border-right: 1px solid #ccc; }
-        .left-panel .shape { width: 250px; height: 350px; background: #eee; }
-        .right-panel { flex: 2; padding: 0 20px; }
-        .section { margin-bottom: 20px; }
-        .section h4 { margin-bottom: 10px; }
-        .grid { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; }
-        .grid div { width: 80px; height: 80px; background: #ddd; border: 1px dashed #999; }
-        .buttons { text-align: center; margin-top: 30px; }
-        .buttons button { margin: 5px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .footer { background: #f4f4f4; padding: 20px; text-align: center; margin-top: 40px; font-size: 14px; color: #555; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Lifts & Engineering</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; }
+    header { background: #003366; color: white; padding: 10px 20px; text-align: center; font-size: 24px; }
+    nav { background: #f4f4f4; padding: 10px 20px; text-align: center; }
+    .container { display: flex; padding: 20px; }
+    .left-panel { flex: 1; display: flex; justify-content: center; align-items: center; border-right: 1px solid #ccc; }
+    .left-panel img { max-width: 90%; max-height: 350px; border: 2px solid #ccc; border-radius: 5px; }
+    .right-panel { flex: 2; padding: 0 20px; }
+    .section { margin-bottom: 20px; }
+    .section h4 { margin-bottom: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; }
+    .grid img { width: 80px; height: 80px; cursor: pointer; transition: transform 0.2s; }
+    .grid img:hover { transform: scale(1.1); }
+    .buttons { text-align: center; margin-top: 30px; }
+    .buttons button { margin: 5px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .footer { background: #f4f4f4; padding: 20px; text-align: center; margin-top: 40px; font-size: 14px; color: #555; }
+    /* Hide all sections except the Body */
+    #ceiling-section, #cop-section, #handle-section, #floor-section {
+        display: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -27,69 +32,43 @@
 <nav>Products | About Us | Contact</nav>
 
 <div class="container">
-    <div class="left-panel">
-        <div class="shape"></div>
+  <div class="left-panel">
+    <!-- এখানে ক্লিক করা ছবিটা দেখানো হবে -->
+    <img id="previewImage" src="images/bd-1-i.jpg" alt="Preview Image">
+  </div>
+
+  <div class="right-panel">
+    <!-- Body Section -->
+    <div class="section" id="body-section">
+      <h4>Body:</h4>
+      <div class="grid">
+        <img src="images/bd-1-i.jpg" alt="Body Part 1" onclick="showPreview(this.src)">
+        <img src="images/bd-2-i.jpg" alt="Body Part 2" onclick="showPreview(this.src)">
+        <img src="images/bd-3-i.jpg" alt="Body Part 3" onclick="showPreview(this.src)">
+        <img src="images/bd-4-i.jpg" alt="Body Part 4" onclick="showPreview(this.src)">
+      </div>
     </div>
-    <div class="right-panel">
-        <div class="section">
-            <h4>Ceiling:</h4>
-            <div class="grid">
-                <div><img src="images/bd-1-i.jpg" alt="Ceiling Part 1" width="80" height="80"></div>
-                <div><img src="images/bd-2-i.jpg" alt="Ceiling Part 2" width="80" height="80"></div>
-                <div><img src="images/bd-3-i.jpg" alt="Ceiling Part 3" width="80" height="80"></div>
-                <div><img src="images/bd-4-i.jpg" alt="Ceiling Part 4" width="80" height="80"></div>
-            </div>
-        </div>
-        <div class="section">
-            <h4>Body:</h4>
-            <div class="grid">
-                <div><img src="images/bd-1-i.jpg" alt="Body Part 1" width="80" height="80"></div>
-                <div><img src="images/bd-2-i.jpg" alt="Body Part 2" width="80" height="80"></div>
-                <div><img src="images/bd-3-i.jpg" alt="Body Part 3" width="80" height="80"></div>
-                <div><img src="images/bd-4-i.jpg" alt="Body Part 4" width="80" height="80"></div>
-            </div>
-        </div>
-        <div class="section">
-            <h4>Cop:</h4>
-            <div class="grid">
-                <div><img src="images/bd-1-i.jpg" alt="Cop Part 1" width="80" height="80"></div>
-                <div><img src="images/bd-2-i.jpg" alt="Cop Part 2" width="80" height="80"></div>
-                <div><img src="images/bd-3-i.jpg" alt="Cop Part 3" width="80" height="80"></div>
-                <div><img src="images/bd-4-i.jpg" alt="Cop Part 4" width="80" height="80"></div>
-            </div>
-        </div>
-        <div class="section">
-            <h4>Handle:</h4>
-            <div class="grid">
-                <div><img src="images/bd-1-i.jpg" alt="Handle Part 1" width="80" height="80"></div>
-                <div><img src="images/bd-2-i.jpg" alt="Handle Part 2" width="80" height="80"></div>
-                <div><img src="images/bd-3-i.jpg" alt="Handle Part 3" width="80" height="80"></div>
-                <div><img src="images/bd-4-i.jpg" alt="Handle Part 4" width="80" height="80"></div>
-            </div>
-        </div>
-        <div class="section">
-            <h4>Floor:</h4>
-            <div class="grid">
-                <div><img src="images/bd-1-i.jpg" alt="Floor Part 1" width="80" height="80"></div>
-                <div><img src="images/bd-2-i.jpg" alt="Floor Part 2" width="80" height="80"></div>
-                <div><img src="images/bd-3-i.jpg" alt="Floor Part 3" width="80" height="80"></div>
-                <div><img src="images/bd-4-i.jpg" alt="Floor Part 4" width="80" height="80"></div>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 
 <div class="buttons">
-    <button>3D View Cabin One</button>
-    <button>3D View Cabin Two</button>
-    <button>3D View Cabin Three</button>
-    <button>3D View Cabin Four</button>
-    <button>3D View Cabin Five</button>
+  <button>3D View Cabin One</button>
+  <button>3D View Cabin Two</button>
+  <button>3D View Cabin Three</button>
+  <button>3D View Cabin Four</button>
+  <button>3D View Cabin Five</button>
 </div>
 
 <div class="footer">
-    © 2025 City Lifts & Engineering. All rights reserved.
+  © 2025 City Lifts & Engineering. All rights reserved.
 </div>
+
+<!-- JavaScript -->
+<script>
+  function showPreview(src) {
+    document.getElementById("previewImage").src = src;
+  }
+</script>
 
 </body>
 </html>
