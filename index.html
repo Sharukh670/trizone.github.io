@@ -20,34 +20,6 @@
     .buttons { text-align: center; margin-top: 30px; }
     .buttons button { margin: 5px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
     .footer { background: #f4f4f4; padding: 20px; text-align: center; margin-top: 40px; font-size: 14px; color: #555; }
-    
-    /* Added style for the question section */
-    .question-section {
-      background: #f8f9fa;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 5px;
-      border-left: 4px solid #003366;
-    }
-    .question-section h3 {
-      margin-top: 0;
-      color: #003366;
-    }
-    .options {
-      display: flex;
-      gap: 15px;
-      margin-top: 10px;
-    }
-    .option {
-      padding: 8px 15px;
-      background: #e9ecef;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .option:hover {
-      background: #dee2e6;
-    }
   </style>
 </head>
 <body>
@@ -61,18 +33,6 @@
   </div>
 
   <div class="right-panel">
-    <!-- Question Section -->
-    <div class="question-section">
-      <h3>Question:</h3>
-      <p>Select the correct option from below:</p>
-      <img src="image.png" alt="Question Image" style="max-width: 100%; height: auto; margin: 10px 0;" />
-      <div class="options">
-        <div class="option" onclick="selectOption(this)">A. 1</div>
-        <div class="option" onclick="selectOption(this)">B. 2</div>
-        <div class="option" onclick="selectOption(this)">C. 3</div>
-      </div>
-    </div>
-
     <!-- Ceiling Section -->
     <div class="section" id="ceiling-section">
       <h4>Ceiling:</h4>
@@ -149,21 +109,6 @@
 
   function changePreview(src) {
     document.getElementById("previewImage").src = src;
-  }
-  
-  function selectOption(element) {
-    // Remove selected class from all options
-    document.querySelectorAll('.option').forEach(opt => {
-      opt.style.background = '#e9ecef';
-      opt.style.fontWeight = 'normal';
-    });
-    
-    // Add selected class to clicked option
-    element.style.background = '#cfe2ff';
-    element.style.fontWeight = 'bold';
-    
-    // Here you can add additional logic to handle the selected answer
-    console.log('Selected option:', element.textContent);
   }
 </script>
 
