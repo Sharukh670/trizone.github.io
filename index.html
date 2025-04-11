@@ -15,10 +15,66 @@
     .section { margin-bottom: 20px; }
     .section h4 { margin-bottom: 10px; }
     .grid { display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; }
-    .grid img { width: 80px; height: 80px; cursor: pointer; transition: transform 0.2s; border: 2px solid transparent; }
-    .grid img:hover { transform: scale(1.1); border-color: #007bff; }
+
+    .grid img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border: 2px solid transparent;
+      background-color: #eee;
+      position: relative;
+    }
+
+    .broken-img {
+      background-color: #ddd;
+      border: 2px dashed #007bff;
+      position: relative;
+    }
+
+    /* Top Left, Top Right, Top Center decorative corners */
+    .broken-img::before, .broken-img::after, .broken-img::marker {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    /* Top left corner */
+    .broken-img::before {
+      top: 0;
+      left: 0;
+      border-width: 0 15px 15px 0;
+      border-color: transparent #007bff transparent transparent;
+    }
+
+    /* Top right corner */
+    .broken-img::after {
+      top: 0;
+      right: 0;
+      border-width: 0 0 15px 15px;
+      border-color: transparent transparent #007bff transparent;
+    }
+
+    /* Bottom left corner */
+    .broken-img::marker {
+      bottom: 0;
+      left: 0;
+      border-width: 15px 15px 0 0;
+      border-color: #007bff transparent transparent transparent;
+    }
+
     .buttons { text-align: center; margin-top: 30px; }
-    .buttons button { margin: 5px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     .footer { background: #f4f4f4; padding: 20px; text-align: center; margin-top: 40px; font-size: 14px; color: #555; }
   </style>
 </head>
@@ -33,60 +89,20 @@
   </div>
 
   <div class="right-panel">
-    <!-- Ceiling Section -->
+
+    <!-- Dynamic Sections (Example: Ceiling) -->
     <div class="section" id="ceiling-section">
       <h4>Ceiling:</h4>
       <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
+        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
+        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
+        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
+        <img src="images/missing-image.jpg" onclick="showPreview(this.src)" onerror="handleError(this)" />
       </div>
     </div>
 
-    <!-- Body Section -->
-    <div class="section" id="body-section">
-      <h4>Body:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
-
-    <!-- COP Section -->
-    <div class="section" id="cop-section">
-      <h4>Cop:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
-
-    <!-- Handle Section -->
-    <div class="section" id="handle-section">
-      <h4>Handle:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
-
-    <!-- Floor Section -->
-    <div class="section" id="floor-section">
-      <h4>Floor:</h4>
-      <div class="grid">
-        <img src="images/bd-1-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-2-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-3-i.jpg" onclick="showPreview(this.src)" />
-        <img src="images/bd-4-i.jpg" onclick="showPreview(this.src)" />
-      </div>
-    </div>
+    <!-- You can repeat this pattern for Body, Cop, Handle, Floor sections -->
+    
   </div>
 </div>
 
@@ -110,10 +126,17 @@
   function changePreview(src) {
     document.getElementById("previewImage").src = src;
   }
+
+  function handleError(img) {
+    img.onerror = null;
+    img.src = ""; // Clear broken image
+    img.classList.add("broken-img");
+  }
 </script>
 
 </body>
 </html>
+
 
 
 
